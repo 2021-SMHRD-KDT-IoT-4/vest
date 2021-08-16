@@ -31,7 +31,7 @@ public class QrActivity extends AppCompatActivity {
         String qrurl = "https://vest-11534-default-rtdb.firebaseio.com/";
         String qrurl1 = "https://smartvest-2881b-default-rtdb.firebaseio.com/";
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance(qrurl);
+        FirebaseDatabase database = FirebaseDatabase.getInstance(qrurl1);
         DatabaseReference myRef = database.getReference("message");
 
 

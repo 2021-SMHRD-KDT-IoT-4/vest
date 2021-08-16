@@ -64,8 +64,7 @@ public class M_MainActivity extends AppCompatActivity {
         btn_gps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(),ManagerActivity.class);
-
+                Intent intent = new Intent(getApplicationContext(),ManagerActivity.class);
                 db_url="https://smartvest-2881b-default-rtdb.firebaseio.com/";
                 database = FirebaseDatabase.getInstance(db_url);
                 myRef = database.getReference("user");
@@ -119,14 +118,15 @@ public class M_MainActivity extends AppCompatActivity {
 
 
 
-                intent1.putExtra("provider",provider);
-                intent1.putExtra("latitude",latitude);
-                intent1.putExtra("longitude",longitude);
-                intent1.putExtra("altitude",altitude);
-                startActivity(intent1);
+                intent.putExtra("provider",provider);
+                intent.putExtra("latitude",latitude);
+                intent.putExtra("longitude",longitude);
+                intent.putExtra("altitude",altitude);
+                startActivity(intent);
 
             }
         });
+
 
 
 
