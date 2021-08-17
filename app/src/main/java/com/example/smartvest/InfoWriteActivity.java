@@ -41,30 +41,31 @@ public class InfoWriteActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String title = et_infoTitle.getText().toString();
-                String write = et_infoTitle.getText().toString();
+                String write = et_infoWrite.getText().toString();
 
                 Map<String, Object> info = new HashMap<>();
                 info.put("내용", write);
                 info.put("제목", title);
 
-                // Add a new document with a generated ID
-                db.collection("InfoWrite")
-                        .add(info)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error adding document", e);
-                            }
-                        });
 
+
+                    db.collection("InfoWrite")
+                            .add(info)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error adding document", e);
+                                }
+                            });
                 Toast.makeText(InfoWriteActivity.this, "등록 성공", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 }

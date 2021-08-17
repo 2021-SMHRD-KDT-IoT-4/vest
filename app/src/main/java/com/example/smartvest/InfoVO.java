@@ -13,6 +13,9 @@ public class InfoVO {
     }
 
 
+    public InfoVO() {
+    }
+
     public String getTitle() {
         return title;
     }
