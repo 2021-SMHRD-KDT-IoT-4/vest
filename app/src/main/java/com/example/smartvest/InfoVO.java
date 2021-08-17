@@ -9,6 +9,9 @@ public class InfoVO {
         this.title = title;
         this.date = date;
     }
+    public InfoVO() {
+    }
+
 
     public String getTitle() {
         return title;
