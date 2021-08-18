@@ -39,10 +39,10 @@ public class QrActivity extends AppCompatActivity {
 
                 //myRef.setValue("Hello, World!");
                // String msg = etMsg.getText().toString();
-                data.add(new QrVO("유연진", "정상",
+                data.add(new QrVO("광주산업", "유연진",
+                        "일반작업",
                         "이수",
-                        "가능",
-                        "이건버튼만들거임"));
+                        "출근"));
                 myRef.push().setValue(data);
 
 

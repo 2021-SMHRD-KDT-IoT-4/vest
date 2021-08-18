@@ -1,11 +1,13 @@
 package com.example.smartvest;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,12 +36,13 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference productRef = db.collection("InfoWrite");
 
-        i_lv = findViewById(R.id.i_lv);
+        i_lv = findViewById(R.id.info_lv);
         data = new ArrayList<>();
         btn_write = findViewById(R.id.btn_write);
+
+
+
 
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,29 +53,24 @@ public class InfoActivity extends AppCompatActivity {
         });
 
 
-        //CollectionReference 는 파이어스토어의 컬렉션을 참조하는 객체다.
-        productRef = db.collection("InfoWrite").document("docu").collection("제목");
-        //get()을 통해서 해당 컬렉션의 정보를 가져온다.
-        productRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                //작업이 성공적으로 마쳤을때
-                if (task.isSuccessful()) {
-                    //컬렉션 아래에 있는 모든 정보를 가져온다.
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        //document.getData() or document.getId() 등등 여러 방법으로
-                        //데이터를 가져올 수 있다.
-                        Map a =  document.getData();
-                        String b =  document.getId();
-                        Log.v("테스트",String.valueOf(a));
-                        Log.v("테스트",b);
-                    }
-                    //그렇지 않을때
-                } else {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-                }
-            }
-        });
+        //get()을 통해서 해당 문서의 정보를 가져온다.
+        db.collection("InfoWrite")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                data.add(new InfoVO(document.getId(),document.getData().get("제목").toString()));
+                                Log.d("테스트11", document.getId() + " => " + document.getData().get("제목").toString());
+                            }
+                        } else {
+                            Log.w("테스트00", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
         data.add(new InfoVO("현장 A구역 유독가스 유출로 접근 금지", "2021-06-15"));
         data.add(new InfoVO("광주연구개발특구 첨단3지구 대행개발사업자 공모 관련 질의 답변", "2021-07-01"));
@@ -82,8 +82,8 @@ public class InfoActivity extends AppCompatActivity {
 
         InfoAdapter adapter = new InfoAdapter(getApplicationContext(),
                 R.layout.infolist, data);
-
         i_lv.setAdapter(adapter);
+
 
     }
 }

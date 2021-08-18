@@ -48,11 +48,11 @@ public class QrAdapter extends BaseAdapter {
             viewHolder = new ViewHolder();
 
             // xml파일에 부여한 id를 초기화!
+            viewHolder.tv_company = convertView.findViewById(R.id.tv_company);
             viewHolder.tv_w_name = convertView.findViewById(R.id.tv_w_name);
-            viewHolder.tv_inout = convertView.findViewById(R.id.tv_inout);
+            viewHolder.tv_work = convertView.findViewById(R.id.tv_work);
             viewHolder.tv_edu = convertView.findViewById(R.id.tv_edu);
-            viewHolder.tv_limit = convertView.findViewById(R.id.tv_limit);
-            viewHolder.tv_live = convertView.findViewById(R.id.tv_live);
+            viewHolder.tv_in_out = convertView.findViewById(R.id.tv_in_out);
 
 
             // convertView가 만들어져 있는지 판단하기 위한 도구
@@ -63,11 +63,11 @@ public class QrAdapter extends BaseAdapter {
         viewHolder = (ViewHolder) convertView.getTag();
 
         // 가져온거 직접 데이터 사이즈만큼 업데이트 해주기
+        viewHolder.tv_company.setText(data.get(position).getTv_company());
         viewHolder.tv_w_name.setText(data.get(position).getTv_w_name());
-        viewHolder.tv_inout.setText(data.get(position).getTv_inout());
+        viewHolder.tv_work.setText(data.get(position).getTv_work());
         viewHolder.tv_edu.setText(data.get(position).getTv_edu());
-        viewHolder.tv_limit.setText(data.get(position).getTv_limit());
-        viewHolder.tv_live.setText(data.get(position).getTv_live());
+        viewHolder.tv_in_out.setText(data.get(position).getTv_in_out());
 
 
 

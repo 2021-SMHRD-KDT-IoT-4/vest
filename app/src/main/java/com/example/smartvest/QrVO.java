@@ -2,15 +2,22 @@ package com.example.smartvest;
 
 public class QrVO {
 
+    private String tv_company, tv_w_name, tv_work, tv_edu, tv_in_out;
 
-    private String tv_w_name, tv_inout, tv_edu, tv_limit, tv_live;
-
-    public QrVO(String tv_w_name, String tv_inout, String tv_edu, String tv_limit, String tv_live) {
+    public QrVO(String tv_company, String tv_w_name, String tv_work, String tv_edu, String tv_in_out) {
+        this.tv_company = tv_company;
         this.tv_w_name = tv_w_name;
-        this.tv_inout = tv_inout;
+        this.tv_work = tv_work;
         this.tv_edu = tv_edu;
-        this.tv_limit = tv_limit;
-        this.tv_live = tv_live;
+        this.tv_in_out = tv_in_out;
+    }
+
+    public String getTv_company() {
+        return tv_company;
+    }
+
+    public void setTv_company(String tv_company) {
+        this.tv_company = tv_company;
     }
 
     public String getTv_w_name() {
@@ -21,12 +28,12 @@ public class QrVO {
         this.tv_w_name = tv_w_name;
     }
 
-    public String getTv_inout() {
-        return tv_inout;
+    public String getTv_work() {
+        return tv_work;
     }
 
-    public void setTv_inout(String tv_inout) {
-        this.tv_inout = tv_inout;
+    public void setTv_work(String tv_work) {
+        this.tv_work = tv_work;
     }
 
     public String getTv_edu() {
@@ -37,19 +44,11 @@ public class QrVO {
         this.tv_edu = tv_edu;
     }
 
-    public String getTv_limit() {
-        return tv_limit;
+    public String getTv_in_out() {
+        return tv_in_out;
     }
 
-    public void setTv_limit(String tv_limit) {
-        this.tv_limit = tv_limit;
-    }
-
-    public String getTv_live() {
-        return tv_live;
-    }
-
-    public void setTv_live(String tv_live) {
-        this.tv_live = tv_live;
+    public void setTv_in_out(String tv_in_out) {
+        this.tv_in_out = tv_in_out;
     }
 }
